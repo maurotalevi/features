@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+	<!-- Context Params -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:META-INF/features/features-ws-server-togglz.xml</param-value>
+		<description>Spring configuration resources, separated by commas.</description>
+	</context-param>
+
+	<!-- Filters -->
+	<filter>
+		<filter-name>TogglzFilter</filter-name>
+		<description>Filter to enable Togglz</description>
+		<filter-class>org.togglz.servlet.TogglzFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>TogglzFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Listeners -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>CXFServlet</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+    <servlet>
+        <servlet-name>TogglzConsoleServlet</servlet-name>
+        <servlet-class>org.togglz.console.TogglzConsoleServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>TogglzConsoleServlet</servlet-name>
+		<url-pattern>/togglz/*</url-pattern>
+	</servlet-mapping>
+
+</web-app>

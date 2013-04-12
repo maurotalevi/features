@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+    http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf-togglz.xml" />
+
+	<util:properties id="featuresProperties"
+		location="classpath:META-INF/features/features.properties" />
+
+	<bean id="featureProvider" class="org.togglz.core.manager.PropertyBasedFeatureProvider">
+		<constructor-arg ref="featuresProperties" />
+	</bean>
+
+	<bean id="file" class="java.io.File">
+		<constructor-arg value="target/togglz.repo" />
+	</bean>
+
+	<bean id="fileStateRepository"
+		class="org.togglz.core.repository.file.FileBasedStateRepository">
+		<constructor-arg ref="file" />
+	</bean>
+
+	<bean id="userProvider" class="org.togglz.core.user.NamedUserProvider">
+		<constructor-arg value="togglz-ws-user" />
+		<constructor-arg value="true" />
+	</bean>
+
+	<bean class="org.togglz.core.bootstrap.ConstructorBasedBootstrapper">
+		<constructor-arg ref="featureProvider" />
+		<constructor-arg ref="fileStateRepository" />
+		<constructor-arg ref="userProvider" />
+	</bean>
+
+</beans>
