@@ -326,9 +326,7 @@
 										<artifactId>
 											maven-dependency-plugin
 										</artifactId>
-										<versionRange>
-											[2.3,)
-										</versionRange>
+										<versionRange>[2.1,)</versionRange>
 										<goals>
 											<goal>unpack</goal>
 											<goal>copy</goal>
