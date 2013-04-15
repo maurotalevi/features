@@ -18,6 +18,7 @@
 
 	<modules>
 		<module>togglz-ext</module>
+        <module>togglz-spring-ext</module>
 		<module>ws</module>
 	</modules>
 
