@@ -6,7 +6,7 @@
   <!-- Context Params -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:META-INF/features/features-ws-server-togglz.xml,classpath:META-INF/spring/spring-security-togglz.xml</param-value>
+    <param-value>classpath:META-INF/features/features-ws-server-togglz.xml,classpath:META-INF/spring/spring-security-ldap-togglz.xml</param-value>
     <description>Spring configuration resources, separated by commas.</description>
   </context-param>
 

@@ -1,0 +1,42 @@
+dn: ou=groups,dc=features,dc=org
+objectclass: top
+objectclass: organizationalUnit
+ou: groups
+
+dn: ou=people,dc=features,dc=org
+objectclass: top
+objectclass: organizationalUnit
+ou: people
+
+dn: uid=mauro,ou=people,dc=features,dc=org
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Mauro
+sn: Talevi
+uid: mauro
+userPassword: toogle
+
+dn: uid=admin,ou=people,dc=features,dc=org
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Admin
+sn: Togglz Admin
+uid: admin
+userPassword: adminz
+
+dn: cn=user,ou=groups,dc=features,dc=org
+objectclass: top
+objectclass: groupOfNames
+cn: user
+member: uid=admin,ou=people,dc=features,dc=org
+member: uid=mauro,ou=people,dc=features,dc=org
+
+dn: cn=supervisor,ou=groups,dc=features,dc=org
+objectclass: top
+objectclass: groupOfNames
+cn: supervisor
+member: uid=admin,ou=people,dc=features,dc=org
