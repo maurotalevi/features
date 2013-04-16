@@ -25,9 +25,8 @@
 		<constructor-arg ref="file" />
 	</bean>
 
-	<bean id="userProvider" class="org.togglz.core.user.NamedUserProvider">
-		<constructor-arg value="togglz-ws-user" />
-		<constructor-arg value="true" />
+	<bean id="userProvider" class="org.togglz.spring.security.SpringSecurityUserProvider">
+		<constructor-arg value="admin" />
 	</bean>
 
 	<bean class="org.togglz.core.bootstrap.ConstructorBasedBootstrapper">
