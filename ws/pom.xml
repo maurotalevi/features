@@ -17,7 +17,7 @@
         <!-- Togglz -->
         <dependency>
             <groupId>org.features</groupId>
-            <artifactId>togglz-ext</artifactId>
+            <artifactId>togglz-core-ext</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

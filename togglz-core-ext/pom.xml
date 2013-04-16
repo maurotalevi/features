@@ -9,9 +9,9 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>togglz-ext</artifactId>
-	<name>Togglz Extensions</name>
-	<description>Contains extensions of Togglz framework, which may be included in future Togglz releases.</description>
+	<artifactId>togglz-core-ext</artifactId>
+	<name>Togglz Core Extensions</name>
+	<description>Contains extensions to Togglz Core, which may be included in future Togglz releases.</description>
 
 	<dependencies>
 		<dependency>
