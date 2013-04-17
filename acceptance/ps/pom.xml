@@ -24,8 +24,8 @@
             <artifactId>togglz-spring-ext</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- Required for compilation only, the runtime dependendies are 
-            specified in the containers according to jsf1/2 profile -->
+        <!-- Required for compilation only, the runtime dependendies are specified 
+            in the containers according to jsf1/2 profile -->
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>jsf-api</artifactId>
@@ -78,6 +78,24 @@
                                     <destFileName>features.properties</destFileName>
                                 </artifactItem>
                             </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>spring-jsf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/generated-resources</outputDirectory>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.features</groupId>
+                                    <artifactId>features-ws</artifactId>
+                                    <version>${project.version}</version>
+                                </artifactItem>
+                            </artifactItems>
+                            <includes>**/spring-jsf.xml</includes>
                         </configuration>
                     </execution>
                 </executions>
@@ -143,13 +161,19 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <webXml>${web.xml}</webXml>
+                    <webResources>
+                        <resource>
+                            <directory>${project.build.directory}/generated-resources/META-INF/spring</directory>
+                            <targetPath>WEB-INF</targetPath>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
-                <!--This plugin's configuration is used to store Eclipse 
-                    m2e settings only. It has no influence on the Maven build itself. -->
+                <!--This plugin's configuration is used to store Eclipse m2e settings 
+                    only. It has no influence on the Maven build itself. -->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
                     <artifactId>lifecycle-mapping</artifactId>
@@ -178,9 +202,7 @@
                                         <artifactId>
                                             maven-dependency-plugin
                                         </artifactId>
-                                        <versionRange>
-                                            [2.3,)
-                                        </versionRange>
+                                        <versionRange>[2.1,)</versionRange>
                                         <goals>
                                             <goal>unpack</goal>
                                             <goal>copy</goal>
