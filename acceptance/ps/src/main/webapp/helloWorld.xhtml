@@ -2,35 +2,42 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-    <title>Hello World</title>
-</h:head>
-<h:body>
-    <h:outputStylesheet name="style.css" library="css"/>
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Hello World</title>
+</head>
+<body>
     <p>This is an example of using feature toggles via WS.</p>
-    <p>If you can't see the button 'Say hello', go to the WS Admin Console and enable the feature 'ID_2'.</p>
+    <p>If you can't see the button 'Say hello', go to the WS Admin
+        Console and enable the feature 'ID_2'.</p>
+
     <div id="container">
-        <h1>Hello World</h1>
+        <h1>Hello World!</h1>
+
         <h:form id="mainForm">
+            <h:outputLabel for="name"
+                value="Please enter your name and click 'Say hello': " />
+            <h:inputText id="name" value="#{helloWorld.name}"
+                required="true" />
+            <h:messages showDetail="true" showSummary="false" />
             <h:panelGrid columns="2">
-                <h:outputLabel for="name" value="Please enter your name and click 'Say hello': "/>
-                <h:inputText id="name" value="#{helloWorld.name}" required="true"/>
-                <h:messages showDetail="true" showSummary="false"/>
-                <h:panelGroup rendered="#{activeFeatures['ID_2']}">             
-                   <h:commandButton value="Say hello" action="#{helloWorld.send}"/>
+                <h:panelGroup rendered="#{activeFeatures['ID_2']}">
+                    <h:commandButton value="Say hello"
+                        action="#{helloWorld.send}" />
                 </h:panelGroup>
             </h:panelGrid>
         </h:form>
-    </div>    
+    </div>
     <div>
         <h:panelGroup rendered="#{activeFeatures['ID_1']}">
-          <p>
-            <a href="http://localhost:8080/ws/togglz/">WS Admin Console</a>
-         </p>
+            <p>
+                <a href="http://localhost:8080/ws/togglz/">WS Admin
+                    Console</a>
+            </p>
         </h:panelGroup>
     </div>
-    
-</h:body>
+
+</body>
 </html>
