@@ -16,11 +16,6 @@
   <dependencies>
     <!-- Togglz -->
     <dependency>
-      <groupId>org.features</groupId>
-      <artifactId>togglz-core-ext</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
       <groupId>org.togglz</groupId>
       <artifactId>togglz-core</artifactId>
       <version>${togglz.version}</version>
@@ -196,4 +191,17 @@
       </plugins>
     </pluginManagement>
   </build>
+
+    <profiles>
+        <profile>
+            <id>stable</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.features</groupId>
+                    <artifactId>togglz-core-ext</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 </project>
