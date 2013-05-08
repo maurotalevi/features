@@ -15,9 +15,9 @@
 
 	<dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>togglz-ext</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.togglz</groupId>
+            <artifactId>togglz-jsp</artifactId>
+            <version>${togglz.version}</version>
         </dependency>
 		<dependency>
 			<groupId>org.togglz</groupId>
