@@ -1,10 +1,5 @@
 package org.features.acceptance.jbehave.steps;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.springframework.core.io.support.PropertiesLoaderUtils.loadAllProperties;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,10 +16,17 @@ import org.jbehave.core.model.OutcomesTable;
 import org.jbehave.core.steps.Parameters;
 import org.togglz.core.manager.FeatureManager;
 import org.togglz.core.manager.FeatureManagerBuilder;
-import org.togglz.core.manager.PropertyBasedFeatureProvider;
+import org.togglz.core.manager.PropertyFeatureProvider;
 import org.togglz.core.repository.StateRepository;
 import org.togglz.core.spi.FeatureProvider;
-import org.togglz.core.util.ConstructorBasedActiveFeatureMap;
+import org.togglz.core.util.FeatureMap;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
+
+import static org.springframework.core.io.support.PropertiesLoaderUtils.loadAllProperties;
 
 
 public class FeatureSteps {
@@ -48,7 +50,7 @@ public class FeatureSteps {
 
 	private FeatureManager buildFeatureManager(URL wsdlURL, QName serviceName, String activationUser)
 			throws IOException {
-		FeatureProvider featureProvider = new PropertyBasedFeatureProvider(
+		FeatureProvider featureProvider = new PropertyFeatureProvider(
 				loadAllProperties("META-INF/features/features.properties"));
 		StateRepository stateRepository = new WebServiceStateRepository(
 				wsdlURL, serviceName, activationUser);
@@ -58,7 +60,7 @@ public class FeatureSteps {
 
 	@Then("the features are: $table")
 	public void thenTheFeaturesAre(ExamplesTable table) {
-		Map<String,Boolean> activeFeatures = new ConstructorBasedActiveFeatureMap(featureManager);
+		Map<Object, Boolean> activeFeatures = new FeatureMap(featureManager);
 		OutcomesTable outcomes = new OutcomesTable();
 		for (Parameters row : table.getRowsAsParameters()) {
 			String name = row.valueAs("name", String.class);

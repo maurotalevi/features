@@ -91,11 +91,11 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>org.features</groupId>
-                                    <artifactId>features-ws</artifactId>
+                                    <artifactId>togglz-spring-ext</artifactId>
                                     <version>${project.version}</version>
                                 </artifactItem>
                             </artifactItems>
-                            <includes>**/spring-jsf.xml</includes>
+                            <includes>**/togglz-spring-jsf.xml</includes>
                         </configuration>
                     </execution>
                 </executions>
@@ -163,7 +163,7 @@
                     <webXml>${web.xml}</webXml>
                     <webResources>
                         <resource>
-                            <directory>${project.build.directory}/generated-resources/META-INF/spring</directory>
+                            <directory>${project.build.directory}/generated-resources/META-INF/togglz</directory>
                             <targetPath>WEB-INF</targetPath>
                         </resource>
                     </webResources>

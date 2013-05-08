@@ -5,13 +5,16 @@ import java.util.Set;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.togglz.core.Feature;
+import org.togglz.core.manager.FeatureManager;
 
 public class ContainsFeature extends BaseMatcher<Set<Feature>> {
 
-	private Feature feature;
+    private FeatureManager featureManager;
+    private Feature feature;
 
-	public ContainsFeature(Feature feature) {
-		this.feature = feature;
+	public ContainsFeature(FeatureManager featureManager, Feature feature) {
+		this.featureManager = featureManager;
+        this.feature = feature;
 	}
 
 	@Override
@@ -20,7 +23,7 @@ public class ContainsFeature extends BaseMatcher<Set<Feature>> {
 		@SuppressWarnings("unchecked")
 		Set<Feature> features = (Set<Feature>) item;
 		for (Feature f : features) {
-			if (f.name().equals(feature.name()) && f.isActive() == feature.isActive() ) {
+			if (f.name().equals(feature.name()) && featureManager.isActive(f) == featureManager.isActive(feature) ) {
 				found = true;
 				continue;
 			}
@@ -33,8 +36,8 @@ public class ContainsFeature extends BaseMatcher<Set<Feature>> {
 		description.appendText("a set of features containing " + feature);
 	}
 
-	public static ContainsFeature containsFeature(Feature feature) {
-		return new ContainsFeature(feature);
+	public static ContainsFeature containsFeature(FeatureManager featureManager, Feature feature) {
+		return new ContainsFeature(featureManager, feature);
 	}
 
 }

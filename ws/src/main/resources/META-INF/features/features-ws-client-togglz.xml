@@ -10,7 +10,7 @@
 	<util:properties id="featuresProperties"
 		location="classpath:META-INF/features/features.properties" />
 
-	<bean id="featureProvider" class="org.togglz.core.manager.PropertyBasedFeatureProvider">
+	<bean id="featureProvider" class="org.togglz.core.manager.PropertyFeatureProvider">
 		<constructor-arg ref="featuresProperties" />
 	</bean>
 
@@ -36,7 +36,7 @@
         <constructor-arg value="togglz-ws-user" />
    	</bean>
 
-	<bean id="userProvider" class="org.togglz.core.user.NamedUserProvider">
+	<bean id="userProvider" class="org.togglz.core.user.SingleUserProvider">
 	   <constructor-arg value="togglz-ws-user" />
 	   <constructor-arg value="true" />
 	</bean>
@@ -49,7 +49,7 @@
 
     <bean id="featureManager" factory-bean="togglzBootstrap" factory-method="createFeatureManager" />
 
-    <bean id="activeFeatures" class="org.togglz.core.util.ConstructorBasedActiveFeatureMap">
+    <bean id="activeFeatures" class="org.togglz.core.util.FeatureMap">
         <constructor-arg ref="featureManager" />
     </bean>
 

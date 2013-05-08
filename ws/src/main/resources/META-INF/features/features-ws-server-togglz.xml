@@ -12,7 +12,7 @@
 	<util:properties id="featuresProperties"
 		location="classpath:META-INF/features/features.properties" />
 
-	<bean id="featureProvider" class="org.togglz.core.manager.PropertyBasedFeatureProvider">
+	<bean id="featureProvider" class="org.togglz.core.manager.PropertyFeatureProvider">
 		<constructor-arg ref="featuresProperties" />
 	</bean>
 
