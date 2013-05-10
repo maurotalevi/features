@@ -114,11 +114,8 @@
         <profile>
             <id>stable</id>
             <properties>
-                <togglz.version>2.0.0.Beta1</togglz.version>
+                <togglz.version>2.0.0.Beta2</togglz.version>
             </properties>
-            <modules>
-                <module>togglz-core-ext</module>
-            </modules>
         </profile>
 	</profiles>
 
