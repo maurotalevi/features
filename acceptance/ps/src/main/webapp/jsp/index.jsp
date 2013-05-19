@@ -1,4 +1,4 @@
-<%@ taglib uri="http://togglz.org/spring/taglib" prefix="togglz"%>
+<%@ taglib uri="http://togglz.org/taglib" prefix="togglz"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -12,9 +12,9 @@
         Console and enable the feature 'ID_2'.</p>
     <div id="container">
         <h1>Hello World</h1>
-        <togglz:activeFeature name="ID_2">
+        <togglz:feature name="ID_2">
             <input type="button" value="Say hello" onclick="doIt()"> 
-        </togglz:activeFeature>
+        </togglz:feature>
     </div>
     <div>
          <a href="http://localhost:8080/ws/togglz/">WS Admin Console</a>

@@ -1,53 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:jaxws="http://cxf.apache.org/jaxws"
-	xsi:schemaLocation="
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util" xmlns:jaxws="http://cxf.apache.org/jaxws"
+    xsi:schemaLocation="
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
     http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
-	<util:properties id="featuresProperties"
-		location="classpath:META-INF/features/features.properties" />
+    <util:properties id="featuresProperties"
+        location="classpath:META-INF/features/features.properties" />
 
-	<bean id="featureProvider" class="org.togglz.core.manager.PropertyFeatureProvider">
-		<constructor-arg ref="featuresProperties" />
-	</bean>
+    <bean id="featureProvider" class="org.togglz.core.manager.PropertyFeatureProvider">
+        <constructor-arg ref="featuresProperties" />
+    </bean>
 
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location">
-			<value>classpath:META-INF/features/client.properties</value>
-		</property>
-	</bean>
+    <bean
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:META-INF/features/client.properties</value>
+        </property>
+    </bean>
 
     <bean id="wsdlURL" class="java.net.URL">
         <constructor-arg value="${wsdl.url}" />
     </bean>
 
-    <bean id="serviceQName" class="javax.xml.namespace.QName" factory-method="valueOf">
+    <bean id="serviceQName" class="javax.xml.namespace.QName"
+        factory-method="valueOf">
         <constructor-arg value="${service.qname}" />
     </bean>
 
-	<bean id="stateRepository"
-		class="org.features.ws.client.WebServiceStateRepository">
-		<constructor-arg ref="wsdlURL" />
+    <bean id="stateRepository" class="org.features.ws.client.WebServiceStateRepository">
+        <constructor-arg ref="wsdlURL" />
         <constructor-arg ref="serviceQName" />
         <constructor-arg value="togglz-ws-user" />
-   	</bean>
+    </bean>
 
-	<bean id="userProvider" class="org.togglz.core.user.SingleUserProvider">
-	   <constructor-arg value="togglz-ws-user" />
-	   <constructor-arg value="true" />
-	</bean>
+    <bean id="userProvider" class="org.togglz.core.user.SingleUserProvider">
+        <constructor-arg value="togglz-ws-user" />
+        <constructor-arg value="true" />
+    </bean>
 
-	<bean id="togglzBootstrap" class="org.togglz.core.bootstrap.ConstructorBasedBootstrapper">
-		<constructor-arg ref="featureProvider" />
-		<constructor-arg ref="stateRepository" />
-		<constructor-arg ref="userProvider" />
-	</bean>
-
-    <bean id="featureManager" factory-bean="togglzBootstrap" factory-method="createFeatureManager" />
+    <bean id="featureManager" class="org.togglz.spring.manager.FeatureManagerFactory">
+        <property name="stateRepository" ref="stateRepository" />
+        <property name="userProvider" ref="userProvider" />
+        <property name="featureProvider" ref="featureProvider" />
+    </bean>
 
     <bean id="activeFeatures" class="org.togglz.core.util.FeatureMap">
         <constructor-arg ref="featureManager" />

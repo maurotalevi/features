@@ -9,6 +9,11 @@
     <param-value>classpath:META-INF/features/features-ws-server-togglz.xml,classpath:META-INF/spring/spring-security-ldap-togglz.xml</param-value>
     <description>Spring configuration resources, separated by commas.</description>
   </context-param>
+  
+  <context-param>
+    <param-name>org.togglz.LOCAL_FEATURE_MANAGER</param-name>
+    <param-value>false</param-value>
+  </context-param>
 
   <!-- Filters -->
   <filter>

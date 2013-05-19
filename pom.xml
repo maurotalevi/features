@@ -17,7 +17,6 @@
 	</properties>
 
 	<modules>
-        <module>togglz-spring-ext</module>
 		<module>ws</module>
 	</modules>
 

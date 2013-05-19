@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.togglz.core.Feature;
-import org.togglz.core.bootstrap.TogglzBootstrap;
 import org.togglz.core.manager.FeatureManager;
 import org.togglz.core.repository.FeatureState;
 import org.togglz.core.util.FeatureMap;
@@ -19,21 +18,20 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class SpringBoostrapTest {
+public class SpringFactoryTest {
 
     @Test
-    public void canBoostrapServerUsingSpring() throws IOException {
+    public void canCreateServerFeatureManager() throws IOException {
         ApplicationContext context = new ClassPathXmlApplicationContext(
                 "classpath:META-INF/features/features-ws-server-togglz.xml");
-        TogglzBootstrap bootstrap = context.getBean(TogglzBootstrap.class);
-        FeatureManager featureManager = bootstrap.createFeatureManager();
+        FeatureManager featureManager = context.getBean(FeatureManager.class);
         Set<Feature> features = featureManager.getFeatures();
         assertFeaturesExist(featureManager, features);
         assertFeaturesCanBeEnabled(featureManager, features);
     }
 
     @Test
-    public void canBoostrapClientUsingSpring() throws IOException {
+    public void canCreateClientFeatureManager() throws IOException {
         ApplicationContext context = new ClassPathXmlApplicationContext(
                 "classpath:META-INF/features/features-ws-client-togglz.xml");
         FeatureManager featureManager = context.getBean(FeatureManager.class);

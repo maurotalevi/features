@@ -80,24 +80,6 @@
                             </artifactItems>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>spring-jsf</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/generated-resources</outputDirectory>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.features</groupId>
-                                    <artifactId>togglz-spring-ext</artifactId>
-                                    <version>${project.version}</version>
-                                </artifactItem>
-                            </artifactItems>
-                            <includes>**/togglz-spring-jsf.xml</includes>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -161,63 +143,9 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <webXml>${web.xml}</webXml>
-                    <webResources>
-                        <resource>
-                            <directory>${project.build.directory}/generated-resources/META-INF/togglz</directory>
-                            <targetPath>WEB-INF</targetPath>
-                        </resource>
-                    </webResources>
                 </configuration>
             </plugin>
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <!--This plugin's configuration is used to store Eclipse m2e settings 
-                    only. It has no influence on the Maven build itself. -->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.apache.cxf</groupId>
-                                        <artifactId>cxf-codegen-plugin</artifactId>
-                                        <versionRange>[${cxf.version},)</versionRange>
-                                        <goals>
-                                            <goal>wsdl2java</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore></ignore>
-                                    </action>
-                                </pluginExecution>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>
-                                            org.apache.maven.plugins
-                                        </groupId>
-                                        <artifactId>
-                                            maven-dependency-plugin
-                                        </artifactId>
-                                        <versionRange>[2.1,)</versionRange>
-                                        <goals>
-                                            <goal>unpack</goal>
-                                            <goal>copy</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore></ignore>
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
 
     <profiles>
