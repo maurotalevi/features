@@ -6,7 +6,8 @@
     http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
     http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
-    <import resource="classpath:META-INF/cxf/cxf-togglz.xml" />
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
     <util:properties id="featuresProperties"
         location="classpath:META-INF/features/features.properties" />
@@ -32,5 +33,13 @@
         <property name="userProvider" ref="userProvider" />
         <property name="featureProvider" ref="featureProvider" />
     </bean>
+
+    <bean id="togglzFeatures" class="org.features.ws.server.TogglzFeatures">
+        <constructor-arg ref="featureManager" />
+    </bean>
+
+    <jaxws:endpoint id="featuresEndpoint"
+        implementor="#togglzFeatures"
+        address="/Features" />
 
 </beans>

@@ -10,9 +10,18 @@ import org.togglz.core.manager.FeatureManager;
 
 @WebService(endpointInterface = "org.features.ws.server.Features", serviceName = "Features")
 public class TogglzFeatures implements Features {
+    
+    private FeatureManager manager;
+    
+    public TogglzFeatures(){
+        this(FeatureContext.getFeatureManager());
+    }
+    
+	public TogglzFeatures(FeatureManager manager) {
+        this.manager = manager;
+    }
 
-	public boolean isActive(String name) {
-		FeatureManager manager = FeatureContext.getFeatureManager();
+    public boolean isActive(String name) {
 		try {
 			Feature feature = feature(manager, name);
 			return manager.isActive(feature);
