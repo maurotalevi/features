@@ -23,7 +23,7 @@
                 required="true" />
             <h:messages showDetail="true" showSummary="false" />
             <h:panelGrid columns="2">
-                <h:panelGroup rendered="#{activeFeatures['ID_2']}">
+                <h:panelGroup rendered="#{features['ID_2']}">
                     <h:commandButton value="Say hello"
                         action="#{helloWorld.send}" />
                 </h:panelGroup>
@@ -31,7 +31,7 @@
         </h:form>
     </div>
     <div>
-        <h:panelGroup rendered="#{activeFeatures['ID_1']}">
+        <h:panelGroup rendered="#{features['ID_1']}">
             <p>
                 <a href="http://localhost:8080/ws/togglz/">WS Admin
                     Console</a>

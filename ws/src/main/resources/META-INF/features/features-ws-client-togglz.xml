@@ -46,7 +46,7 @@
         <property name="featureProvider" ref="featureProvider" />
     </bean>
 
-    <bean id="activeFeatures" class="org.togglz.core.util.FeatureMap">
+    <bean id="features" class="org.togglz.core.util.FeatureMap">
         <constructor-arg ref="featureManager" />
     </bean>
 
