@@ -19,6 +19,16 @@
             <artifactId>features-ws</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.togglz</groupId>
+            <artifactId>togglz-jsf</artifactId>
+            <version>${togglz.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.togglz</groupId>
+            <artifactId>togglz-jsp</artifactId>
+            <version>${togglz.version}</version>
+        </dependency>
         <!-- Required for compilation only, the runtime dependendies are specified 
             in the containers according to jsf1/2 profile -->
         <dependency>
