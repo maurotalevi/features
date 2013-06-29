@@ -10,7 +10,7 @@
 	<name>Features</name>
 
 	<properties>
-		<togglz.version>2.0.0.RC1</togglz.version>
+		<togglz.version>2.0.0.Final</togglz.version>
 		<spring.version>3.1.3.RELEASE</spring.version>
 		<cxf.version>2.7.3</cxf.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
